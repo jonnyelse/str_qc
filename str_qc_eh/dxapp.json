@@ -1,0 +1,177 @@
+{
+  "name": "str_qc_eh",
+  "title": "str_qc_eh",
+  "summary": "QC the STRs output by ExpansionHunter",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "inputSpec": [
+    {
+      "name": "chr",
+      "class": "string",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "input_vcf",
+      "class": "file",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "input_vcf_index",
+      "class": "file",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "output_prefix",
+      "class": "string",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "AAP_threshold",
+      "class": "float",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "NTSR_threshold",
+      "class": "int",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "NLC_threshold",
+      "class": "float",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "MADSP_threshold",
+      "class": "int",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "variant_missing_threshold",
+      "class": "float",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "homozygosity_threshold",
+      "class": "float",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "ADSP_comparison_threshold",
+      "class": "float",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "output_folder",
+      "class": "string",
+      "optional": true,
+      "default": "\"\"",
+      "help": ""
+    },
+    {
+      "name": "project",
+      "class": "string",
+      "optional": true,
+      "default": "\"\"",
+      "help": ""
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "chr_output_vcf",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "chr_output_vcf_index",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "chr_QC_info",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "hi_miss_vars",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "homozygosity_fails",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "adsp_fails",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    }
+  ],
+  "runSpec": {
+    "execDepends": [
+        {"name": "bcftools"},
+        {"name": "tabix"},
+        {"name": "bedtools"},
+        {"name": "dos2unix"},
+        {"name": "r-base"},
+        {"name": "dplyr", "package_manager": "cran"},
+        {"name": "digest", "package_manager": "cran"},
+        {"name": "isoband", "package_manager": "cran"},
+        {"name": "psych", "package_manager": "cran"},
+        {"name": "ellipsis", "package_manager": "cran"},
+        {"name": "stringr", "package_manager": "cran"},
+        {"name": "data.table", "package_manager": "cran"}
+    ],
+    "timeoutPolicy": {
+      "*": {
+        "hours": 48
+      }
+    },
+    "interpreter": "bash",
+    "release": "20.04",
+    "distribution": "Ubuntu",
+    "file": "src/STR_QC_EH.sh",
+    "version": "0"
+  },
+  "access": {"network": ["*"],
+    "project": "CONTRIBUTE"
+  },
+  "regionalOptions": {
+    "aws:eu-west-2": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem3_ssd2_v2_x4"
+        }
+      }
+    }
+  }
+}

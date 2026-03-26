@@ -1,0 +1,14 @@
+*.vcf
+*.vcf.gz
+*.csi
+*.bcf
+*.tsv
+*.txt
+*.bed
+*.log
+*.out
+*_work/
+tmp/
+.Rhistory
+.RData
+.DS_Store
